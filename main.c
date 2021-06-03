@@ -91,11 +91,14 @@ void init() {
 	stopWatchDogTimer();
 	setUpRTC();
 }
-void prettyPrint(unsigned char hour,unsigned char minute){
+
+void prettyPrint(){
 	
-	printf("Date & Time\n");
+	printf("Time is\n");
 	printf(dateTime.hour);
+	printf(":");
 	printf(dateTime.minute);
+	printf("\n");
 	
 }
 
@@ -105,6 +108,6 @@ void main(void) {
 	
 	while(1){
 		getDateRTC();
-		prettyPrint(dateTime.hour, dateTime.minute);
+		prettyPrint();
 	}
 }
