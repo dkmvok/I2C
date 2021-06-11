@@ -24,6 +24,9 @@ void uartInit(){
 
 void uartPutChar(uint8_t ch) {
 
+	txByte = ch;
+	while(isRxComm){};
+	
 	txByte |= 0x100; //0b1_0000_0000
 	txByte = txByte << 1;	//0b10_0000_0000
 	bitCounter = 0x0A;    
