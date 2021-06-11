@@ -5,6 +5,9 @@
 #define RXDATA
 #define BITTIME (1000000/19200)
 
+unsigned int TXByte;
+unsigned int RXByte;
+
 void uartInit(){
 
 	P1SEL |= TXDATA;
@@ -19,14 +22,13 @@ void uartInit(){
 
 void uartPutChar(uint8_t ch) {
 
+	TXBYTE |= 0x100; //0b1_0000_0000
+	TXBYTE = TXBYTE << 1;	//0b10_0000_0000
 	TACCTL0 = OUT;
 	TACTL = TASSEL2 + MC_2;
 	TACCR0 = TAR;
 	TACCR0 += (BITTIME);
-	TXBYTE |= 0x100; //0b1_0000_0000
-	TACCTL0 = CCIS_0 | OUTMOD_0 | CCIE | OUT;
-	
-	
+	TACCTL0 = CCIS_0 | OUTMOD_0 | CCIE | OUT;	
 
 }
 
@@ -35,6 +37,5 @@ void uartPuts(char * str) {
 	while(*str != '\0'){
 		uartPutChar();
 	}
-
 }
 
