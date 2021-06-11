@@ -3,7 +3,7 @@
 
 #define TXDATA
 #define RXDATA
-#define BITTIME (1000000/19200)
+#define BITTIME (1000000/115200)
 
 unsigned int txByte;
 unsigned int rxByte;
